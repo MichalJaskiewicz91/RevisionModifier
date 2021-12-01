@@ -1,0 +1,179 @@
+﻿<UserControl x:Class="Task.Views.WorkplanListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="416" d:DesignWidth="739">
+
+    <UserControl.Resources>
+        <!-- Styles for Workplans datagrid -->
+
+        <!--DatagridCell style-->
+        <Style x:Key="WorkplansDataGridCell" 
+               TargetType="DataGridCell" 
+               BasedOn="{StaticResource {x:Type DataGridCell}}">
+            <Setter Property="Background" 
+                    Value="White"/>
+            <Setter Property="VerticalContentAlignment" 
+                    Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" 
+                         Value="True">
+                    <Setter Property="Background" 
+                            Value="Red"/>
+                    <Setter Property="Foreground" 
+                            Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Styles for WorkplanSteps datagrid -->
+
+        <!-- Sets properties of datagrid -->
+        <Style x:Key="WorkplanStepsDataGrid" TargetType="{x:Type DataGrid}">
+            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource ColumnHeaderStyle}"/>
+            <Setter Property="RowStyle" Value="{DynamicResource RowStyle}"/>
+        </Style>
+
+        <!-- DataGridColumnHeader style -->
+        <Style x:Key="ColumnHeaderStyle" 
+               TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" 
+                    Value="Bold"/>
+            <Setter Property="Background" 
+                    Value="LightGray"/>
+            <Setter Property="Foreground" 
+                    Value="Black"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" 
+                         Value="True">
+                    <Setter Property="ToolTip" 
+                            Value="Click to sort."/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- DataGridRow style -->
+        <Style x:Key="RowStyle" 
+               TargetType="DataGridRow">
+            <Setter Property="Background" 
+                    Value="#E8E8E8"/>
+            <Setter Property="Foreground" 
+                    Value="Black"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected"
+                         Value="True">
+                    <Setter Property="BorderBrush"
+                         Value="Blue" />
+                    <Setter Property="BorderThickness"
+                         Value="2" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+
+    <!--Main grid-->
+    <Grid Name="XmlGrid">
+        <!--Column definition-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Row definition-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="500"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--Buttons for loading and saving-->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="300" 
+                    Margin="2" 
+                    Content="Choose Workplan File from the disk" 
+                    Command="{Binding ChooseXMLFile}"/>
+                <TextBox Width="300" 
+                    Margin="2" 
+                    Background="#EEE"
+                    IsReadOnly="True"
+                    Text="{Binding ChosenXMLFilePath}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="300" 
+                    Margin="2" 
+                    Content="Load XMP Workplans" 
+                    Command="{Binding LoadXmlButtonTextCommand}"/>
+                <Button Width="300" 
+                    Margin="2" 
+                    Content="Save XMP Workplans" 
+                    Command="{Binding SaveXmlButtonTextCommand}"/>
+            </StackPanel>
+
+
+        </Grid>
+
+        <!--Workplans datagrid-->
+        <DataGrid Grid.Column="0" 
+                  Name="Workplans"
+                  Grid.Row="1" Margin="10" 
+                  ItemsSource="{Binding Workplans}" 
+                  SelectionMode="single" 
+                  AutoGenerateColumns="False" 
+                  CellStyle="{StaticResource WorkplansDataGridCell}">
+
+            <!--Displayed columns-->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" 
+                                    Binding="{Binding Id}"
+                                    IsReadOnly="True"/>
+                <DataGridTextColumn Header="Name" 
+                                    Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Description" 
+                                    Binding="{Binding Description}" />
+                <DataGridTextColumn Header="StepsCount" 
+                                    Binding="{Binding StepsCount}"
+                                    IsReadOnly="True"/>
+            </DataGrid.Columns>
+
+            <!--Row details-->
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+
+                    <!--WorkplanSteps datagrid-->
+                    <DataGrid Style="{DynamicResource WorkplanStepsDataGrid}" 
+                              ItemsSource="{Binding WorkplanSteps}"
+                              Name="WorkplanSteps"
+                              AutoGenerateColumns="False">
+
+                        <!--Displayed columns-->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" 
+                                                Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Name" 
+                                                Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Description" 
+                                                Binding="{Binding Description}" />
+                            <DataGridTextColumn Header="ParentId" 
+                                                Binding="{Binding ParentId}"/>
+                            <DataGridTextColumn Header="ChildId" 
+                                                Binding="{Binding ChildId}"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                </DataTemplate>
+
+            </DataGrid.RowDetailsTemplate>
+
+        </DataGrid>
+
+    </Grid>
+
+</UserControl>

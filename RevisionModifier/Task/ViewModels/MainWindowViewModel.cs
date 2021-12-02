@@ -19,9 +19,9 @@ namespace Task.ViewModel
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         #region Private Members
-        private bool isWorkplansLoaded;
+        private bool isRevisionLoaded;
         private string chosenXMLFilePath;
-        private readonly IWorkplanProvider _workplanProvider;
+        private readonly IRevisionProvider _revisionProvider;
         #endregion
 
         #region Public Members
@@ -30,9 +30,9 @@ namespace Task.ViewModel
         /// </summary>
         public ObservableCollection<UIElement> MainWindowControls { get; set; }
         /// <summary>
-        /// Keeps workplan elements.
+        /// Keeps revision elements.
         /// </summary>
-        public ObservableCollection<WorkplanModel> Workplans { get; } = new ObservableCollection<WorkplanModel>();
+        public ObservableCollection<RevisionModel> Revisions { get; } = new ObservableCollection<RevisionModel>();
         /// <summary>
         /// Chosen XML file path by the user.
         /// </summary>
@@ -51,10 +51,10 @@ namespace Task.ViewModel
         /// <summary>
         /// Main window constuctor. Creates Main Window Instance and injects dependency.
         /// </summary>
-        public MainWindowViewModel(IWorkplanProvider workplanProvider)
+        public MainWindowViewModel(IRevisionProvider revisionProvider)
         {
-            MainWindowControls = new ObservableCollection<UIElement> { new WorkplanListView() };
-            _workplanProvider = workplanProvider;
+            MainWindowControls = new ObservableCollection<UIElement> { new RevisionListView() };
+            _revisionProvider = revisionProvider;
         }
         #endregion
 
@@ -97,26 +97,26 @@ namespace Task.ViewModel
             if (ChosenXMLFilePath == null || ChosenXMLFilePath == "")
             {
                 // Indicate a message
-                MessageBox.Show("Please load xml workplan file from the disk firstly!");
+                MessageBox.Show("Please load xml revision file from the disk firstly!");
                 return;
             }
 
             // Invoke a load method and assign result to the variable
-            var workplans = _workplanProvider.LoadWorkplans(ChosenXMLFilePath);
-            if (workplans == null)
+            var revisions = _revisionProvider.LoadRevisions(ChosenXMLFilePath);
+            if (revisions == null)
                 return;
 
-            // Clear workplans collection
-            Workplans.Clear();
-            foreach (var item in workplans)
+            // Clear revisions collection
+            Revisions.Clear();
+            foreach (var item in revisions)
             {
-                // Add every workplan to the collection
-                Workplans.Add(item);
+                // Add every revision to the collection
+                Revisions.Add(item);
             }
             // Set a flag
-            isWorkplansLoaded = true;
+            isRevisionLoaded = true;
             // Indicate a message
-            MessageBox.Show("Workplans have been loaded properly");
+            MessageBox.Show("Revisions have been loaded properly");
         }
         /// <summary>
         /// Actions when save XML button is clicked.
@@ -125,13 +125,13 @@ namespace Task.ViewModel
         private void OnXMLSave(object parameter)
         {
             // Check whether given path is empty or null and check if work plan are already loaded
-            if (isWorkplansLoaded == false || ChosenXMLFilePath == null || ChosenXMLFilePath == "")
+            if (isRevisionLoaded == false || ChosenXMLFilePath == null || ChosenXMLFilePath == "")
             {
-                MessageBox.Show("Please load workplans firstly!");
+                MessageBox.Show("Please load Revisions firstly!");
                 return;
             }
             // Invoke a save method
-            _workplanProvider.SaveWorkplan(Workplans.ToList(), ChosenXMLFilePath);
+            _revisionProvider.SaveRevision(Revisions.ToList(), ChosenXMLFilePath);
         }
         /// <summary>
         /// Gets string of chosen file.
@@ -144,11 +144,11 @@ namespace Task.ViewModel
 
             if (ChosenXMLFilePath == null || ChosenXMLFilePath == "")
             {
-                // Clear workplans collection
-                Workplans.Clear();
+                // Clear revisions collection
+                Revisions.Clear();
                 return;
             }
-            // Automatically load workplans
+            // Automatically load revisions
             OnXMLLoad(this);
 
 
@@ -168,7 +168,7 @@ namespace Task.ViewModel
         /// <param name="e"></param>
         public void OnMainWindowLoaded(object sender, RoutedEventArgs e)
         {
-            MainWindowControls.Add(new WorkplanListView());
+            MainWindowControls.Add(new RevisionListView());
         }
 
         #endregion

@@ -13,31 +13,31 @@ using Task.Models;
 namespace Task.Services
 {
     /// <summary>
-    /// A class that handles workplans.
+    /// A class that handles revisions.
     /// </summary>
-    public class WorkplanProvider : IWorkplanProvider
+    public class RevisionProvider : IRevisionProvider
     {
         /// <summary>
         /// A method that provides loading workplans from the file.
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public List<WorkplanModel> LoadWorkplans(string filePath)
+        public List<RevisionModel> LoadRevisions(string filePath)
         {
             // Using XML serializer.
-            XmlSerializer ser = new XmlSerializer(typeof(List<WorkplanModel>));
+            XmlSerializer ser = new XmlSerializer(typeof(List<RevisionModel>));
 
             // List of workplans that will be filled from the file.
-            List<WorkplanModel> workplans;
+            List<RevisionModel> revisions;
 
-            // Try to load workplans from the file.
+            // Try to load revisions from the file.
             try
             {
                 using (XmlReader reader = XmlReader.Create(filePath))
                 {
-                    workplans = (List<WorkplanModel>)ser.Deserialize(reader);
+                    revisions = (List<RevisionModel>)ser.Deserialize(reader);
                 }
-                return workplans;
+                return revisions;
 
             }
             catch (Exception e)
@@ -48,23 +48,23 @@ namespace Task.Services
         }
 
         /// <summary>
-        /// A method that provides saving workplans to the file.
+        /// A method that provides saving revisions to the file.
         /// </summary>
-        /// <param name="workplanModels"></param>
+        /// <param name="revisionModels"></param>
         /// <param name="filePath"></param>
-        public void SaveWorkplan(List<WorkplanModel> workplanModels, string filePath)
+        public void SaveRevision(List<RevisionModel> revisionModels, string filePath)
         {
             // Using XML serializer.
-            XmlSerializer xs = new XmlSerializer(typeof(List<WorkplanModel>));
+            XmlSerializer xs = new XmlSerializer(typeof(List<RevisionModel>));
 
-            // Try to save workplans to the file.
+            // Try to save revisions to the file.
             try
             {
                 using (TextWriter txtWriter = new StreamWriter(filePath))
                 {
-                    xs.Serialize(txtWriter, workplanModels);
+                    xs.Serialize(txtWriter, revisionModels);
                 }
-                MessageBox.Show("Workplans have been saved properly");
+                MessageBox.Show("Revisions have been saved properly");
             }
             catch (Exception e)
             {

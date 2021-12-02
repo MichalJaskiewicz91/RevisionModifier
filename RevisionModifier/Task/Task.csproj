@@ -66,10 +66,10 @@
     <Compile Include="Commands\CommandHandler.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Services\IWorkplanProvider.cs" />
-    <Compile Include="Services\WorkplanProvider.cs" />
-    <Compile Include="Views\WorkplanListView.xaml.cs">
-      <DependentUpon>WorkplanListView.xaml</DependentUpon>
+    <Compile Include="Services\IRevisionProvider.cs" />
+    <Compile Include="Services\RevisionProvider.cs" />
+    <Compile Include="Views\RevisionListView.xaml.cs">
+      <DependentUpon>RevisionListView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -79,14 +79,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\WorkplanModel.cs" />
-    <Compile Include="Models\WorkplanStepModel.cs" />
+    <Compile Include="Models\RevisionModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\WorkplanListView.xaml">
+    <Page Include="Views\RevisionListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

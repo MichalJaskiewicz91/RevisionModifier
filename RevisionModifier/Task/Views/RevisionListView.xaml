@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Task.Views.WorkplanListView"
+﻿<UserControl x:Class="Task.Views.RevisionListView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,7 +10,7 @@
         <!-- Styles for Workplans datagrid -->
 
         <!--DatagridCell style-->
-        <Style x:Key="WorkplansDataGridCell" 
+        <Style x:Key="RevisionDataGridCell" 
                TargetType="DataGridCell" 
                BasedOn="{StaticResource {x:Type DataGridCell}}">
             <Setter Property="Background" 
@@ -28,7 +28,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Styles for WorkplanSteps datagrid -->
+        <!-- Styles for Revisions datagrid -->
 
         <!-- Sets properties of datagrid -->
         <Style x:Key="WorkplanStepsDataGrid" TargetType="{x:Type DataGrid}">
@@ -96,7 +96,7 @@
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Width="300" 
                     Margin="2" 
-                    Content="Choose Workplan File from the disk" 
+                    Content="Choose Revision File from the disk" 
                     Command="{Binding ChooseXMLFile}"/>
                 <TextBox Width="300" 
                     Margin="2" 
@@ -108,11 +108,11 @@
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Width="300" 
                     Margin="2" 
-                    Content="Load XMP Workplans" 
+                    Content="Load Revisions" 
                     Command="{Binding LoadXmlButtonTextCommand}"/>
                 <Button Width="300" 
                     Margin="2" 
-                    Content="Save XMP Workplans" 
+                    Content="Save Revisions" 
                     Command="{Binding SaveXmlButtonTextCommand}"/>
             </StackPanel>
 
@@ -123,36 +123,48 @@
         <DataGrid Grid.Column="0" 
                   Name="Workplans"
                   Grid.Row="1" Margin="10" 
-                  ItemsSource="{Binding Workplans}" 
+                  ItemsSource="{Binding Revisions}" 
                   SelectionMode="single" 
                   AutoGenerateColumns="False" 
-                  CellStyle="{StaticResource WorkplansDataGridCell}">
+                  CellStyle="{StaticResource RevisionDataGridCell}">
 
             <!--Displayed columns-->
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" 
-                                    Binding="{Binding Id}"
+                <DataGridTextColumn Header="ElementNumber" 
+                                    Binding="{Binding ElementNumber}"
                                     IsReadOnly="True"/>
-                <DataGridTextColumn Header="Name" 
-                                    Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Description" 
-                                    Binding="{Binding Description}" />
-                <DataGridTextColumn Header="StepsCount" 
-                                    Binding="{Binding StepsCount}"
+                <DataGridTextColumn Header="ElementType" 
+                                    Binding="{Binding ElementType}" />
+                <DataGridTextColumn Header="End" 
+                                    Binding="{Binding End}" />
+                <DataGridTextColumn Header="IndicatorNumber" 
+                                    Binding="{Binding IndicatorNumber}"
                                     IsReadOnly="True"/>
+                <DataGridTextColumn Header="RelativeAdresse" 
+                                    Binding="{Binding RelativeAdresse}" />
+                <DataGridTextColumn Header="Slave" 
+                                    Binding="{Binding Slave}" />
+                <DataGridTextColumn Header="Start" 
+                                    Binding="{Binding Start}" />
+                <DataGridTextColumn Header="State" 
+                                    Binding="{Binding State}" />
+                <DataGridTextColumn Header="TopAdresse" 
+                                    Binding="{Binding TopAdresse}" />
+                <DataGridTextColumn Header="Typ" 
+                                    Binding="{Binding Typ}" />
             </DataGrid.Columns>
 
             <!--Row details-->
-            <DataGrid.RowDetailsTemplate>
+            <!--<DataGrid.RowDetailsTemplate>
                 <DataTemplate>
 
-                    <!--WorkplanSteps datagrid-->
+                    --><!--WorkplanSteps datagrid--><!--
                     <DataGrid Style="{DynamicResource WorkplanStepsDataGrid}" 
                               ItemsSource="{Binding WorkplanSteps}"
                               Name="WorkplanSteps"
                               AutoGenerateColumns="False">
 
-                        <!--Displayed columns-->
+                        --><!--Displayed columns--><!--
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" 
                                                 Binding="{Binding Id}"/>
@@ -170,7 +182,7 @@
 
                 </DataTemplate>
 
-            </DataGrid.RowDetailsTemplate>
+            </DataGrid.RowDetailsTemplate>-->
 
         </DataGrid>
 

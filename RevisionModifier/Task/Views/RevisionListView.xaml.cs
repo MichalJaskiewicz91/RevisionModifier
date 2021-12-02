@@ -3,12 +3,12 @@
     /// <summary>
     /// Interaction logic for WorkplanListView.xaml
     /// </summary>
-    public partial class WorkplanListView
+    public partial class RevisionListView
     {
         /// <summary>
         /// WorkplanListView View constructor
         /// </summary>
-        public WorkplanListView()
+        public RevisionListView()
         {
             InitializeComponent();
         }

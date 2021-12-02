@@ -28,7 +28,7 @@ static class Program
         var container = new Container();
 
         // Register your types, for instance:
-        container.Register<IWorkplanProvider, WorkplanProvider>();
+        container.Register<IRevisionProvider, RevisionProvider>();
 
         // Register your windows and view models:
         container.Register<MainWindow>();

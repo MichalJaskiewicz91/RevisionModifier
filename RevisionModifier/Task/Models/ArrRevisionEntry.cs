@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Task.Models
 {
     /// <summary>
     /// Class holding revision information
     /// </summary>
+    [Serializable]
     public class ArrRevisionEntry
     {
-        public string RevisionEntry { get; set; } 
+        [System.Xml.Serialization.XmlElementAttribute("RevisionEntry")]
+        public List<RevisionEntry> RevisionEntry;
 
     }
 }

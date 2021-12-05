@@ -123,7 +123,7 @@
         <DataGrid Grid.Column="0" 
                   Name="Workplans"
                   Grid.Row="1" Margin="10" 
-                  ItemsSource="{Binding Revisions}" 
+                  ItemsSource="{Binding RevisionsEntries}" 
                   SelectionMode="single" 
                   AutoGenerateColumns="False" 
                   CellStyle="{StaticResource RevisionDataGridCell}">
@@ -131,15 +131,13 @@
             <!--Displayed columns-->
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ElementNumber" 
-                                    Binding="{Binding ElementNumber}"
-                                    IsReadOnly="True"/>
+                                    Binding="{Binding ElementNumber}"/>
                 <DataGridTextColumn Header="ElementType" 
                                     Binding="{Binding ElementType}" />
                 <DataGridTextColumn Header="End" 
                                     Binding="{Binding End}" />
                 <DataGridTextColumn Header="IndicatorNumber" 
-                                    Binding="{Binding IndicatorNumber}"
-                                    IsReadOnly="True"/>
+                                    Binding="{Binding IndicatorNumber}"/>
                 <DataGridTextColumn Header="RelativeAdresse" 
                                     Binding="{Binding RelativeAdresse}" />
                 <DataGridTextColumn Header="Slave" 

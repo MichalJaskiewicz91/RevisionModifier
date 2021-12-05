@@ -32,7 +32,7 @@ namespace Task.ViewModel
         /// <summary>
         /// Keeps revision elements.
         /// </summary>
-        public ObservableCollection<ArrRevisionEntry> Revisions { get; } = new ObservableCollection<ArrRevisionEntry>();
+        public ObservableCollection<RevisionEntry> RevisionsEntries { get; } = new ObservableCollection<RevisionEntry>();
         /// <summary>
         /// Chosen XML file path by the user.
         /// </summary>
@@ -97,21 +97,21 @@ namespace Task.ViewModel
             if (ChosenXMLFilePath == null || ChosenXMLFilePath == "")
             {
                 // Indicate a message
-                MessageBox.Show("Please load xml revision file from the disk firstly!");
+                MessageBox.Show("Please load xml revision file from the disk first!");
                 return;
             }
 
             // Invoke a load method and assign result to the variable
-            var revisions = _revisionProvider.LoadRevisions(ChosenXMLFilePath);
-            if (revisions == null)
+            var revisionsEntries = _revisionProvider.LoadRevisionEntries(ChosenXMLFilePath);
+            if (revisionsEntries == null)
                 return;
 
-            // Clear revisions collection
-            Revisions.Clear();
-            foreach (var item in revisions)
+            //Clear revisions collection
+            RevisionsEntries.Clear();
+            foreach (var item in revisionsEntries)
             {
-                // Add every revision to the collection
-                Revisions.Add(item);
+                //Add every revision to the collection
+                RevisionsEntries.Add(item);
             }
             // Set a flag
             isRevisionLoaded = true;
@@ -131,7 +131,7 @@ namespace Task.ViewModel
                 return;
             }
             // Invoke a save method
-            _revisionProvider.SaveRevision(Revisions.ToList(), ChosenXMLFilePath);
+            _revisionProvider.SaveRevisionEntries(RevisionsEntries.ToList(), ChosenXMLFilePath);
         }
         /// <summary>
         /// Gets string of chosen file.
@@ -145,7 +145,7 @@ namespace Task.ViewModel
             if (ChosenXMLFilePath == null || ChosenXMLFilePath == "")
             {
                 // Clear revisions collection
-                Revisions.Clear();
+                RevisionsEntries.Clear();
                 return;
             }
             // Automatically load revisions

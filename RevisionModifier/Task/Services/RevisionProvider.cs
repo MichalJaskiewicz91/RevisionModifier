@@ -22,20 +22,36 @@ namespace Task.Services
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public List<RevisionModel> LoadRevisions(string filePath)
+        public List<ArrRevisionEntry> LoadRevisions(string filePath)
         {
             // Using XML serializer.
-            XmlSerializer ser = new XmlSerializer(typeof(List<RevisionModel>));
+            XmlSerializer ser = new XmlSerializer(typeof(List<ArrRevisionEntry>));
 
             // List of workplans that will be filled from the file.
-            List<RevisionModel> revisions;
+            List<ArrRevisionEntry> revisions;
 
             // Try to load revisions from the file.
             try
             {
+                //XmlTextReader xmlReader = new XmlTextReader(filePath);
+                //while (xmlReader.Read())
+                //{
+                //    if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "RevisionEntry")) ;
+                //    {
+                //        if (xmlReader.HasAttributes)
+                //            MessageBox.Show(xmlReader.GetAttribute("ElementNumber") + ": " + xmlReader.GetAttribute("ElementType") + ": " + xmlReader.GetAttribute("End") + ": " + xmlReader.GetAttribute("IndicatorNumber") + ": " + xmlReader.GetAttribute("RelativeAdresse") + ": " + xmlReader.GetAttribute("Slave") + ": " + xmlReader.GetAttribute("Start") + ": " + xmlReader.GetAttribute("State") + ": " + xmlReader.GetAttribute("TopAdresse") + ": " + xmlReader.GetAttribute("Typ"));
+                //    }
+                //}
+
+                //using (XmlReader reader = XmlReader.Create(filePath))
+                //{
+                //    revisions = (List<ArrRevisionEntry>)ser.Deserialize(reader);
+                //}
+                //return revisions;
+
                 using (XmlReader reader = XmlReader.Create(filePath))
                 {
-                    revisions = (List<RevisionModel>)ser.Deserialize(reader);
+                    revisions = (List<ArrRevisionEntry>)ser.Deserialize(reader);
                 }
                 return revisions;
 
@@ -52,10 +68,10 @@ namespace Task.Services
         /// </summary>
         /// <param name="revisionModels"></param>
         /// <param name="filePath"></param>
-        public void SaveRevision(List<RevisionModel> revisionModels, string filePath)
+        public void SaveRevision(List<ArrRevisionEntry> revisionModels, string filePath)
         {
             // Using XML serializer.
-            XmlSerializer xs = new XmlSerializer(typeof(List<RevisionModel>));
+            XmlSerializer xs = new XmlSerializer(typeof(List<ArrRevisionEntry>));
 
             // Try to save revisions to the file.
             try

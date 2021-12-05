@@ -65,6 +65,8 @@
     </ApplicationDefinition>
     <Compile Include="Commands\CommandHandler.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="Models\Revision.cs" />
+    <Compile Include="Models\RevisionEntry.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Services\IRevisionProvider.cs" />
     <Compile Include="Services\RevisionProvider.cs" />
@@ -79,7 +81,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\RevisionModel.cs" />
+    <Compile Include="Models\ArrRevisionEntry.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

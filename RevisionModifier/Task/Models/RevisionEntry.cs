@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Task.Models
 {
-    /// <summary>
-    /// Class holding revision information
-    /// </summary>
-    public class RevisionModel
+    public class RevisionEntry
     {
-
         public string ElementNumber { get; set; }
         public string ElementType { get; set; }
         public string End { get; set; }
@@ -18,6 +18,5 @@ namespace Task.Models
         public string State { get; set; }
         public string TopAdresse { get; set; }
         public string Typ { get; set; }
-
     }
 }

@@ -17,13 +17,13 @@ namespace Task.Services
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        List<RevisionModel> LoadRevisions(string filePath);
+        List<ArrRevisionEntry> LoadRevisions(string filePath);
         /// <summary>
         /// A method that provides saving revisions to the file.
         /// </summary>
         /// <param name="revisionModels"></param>
         /// <param name="filePath"></param>
-        void SaveRevision(List<RevisionModel> revisionModels, string filePath);
+        void SaveRevision(List<ArrRevisionEntry> revisionModels, string filePath);
 
 
     }

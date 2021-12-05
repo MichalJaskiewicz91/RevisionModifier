@@ -32,7 +32,7 @@ namespace Task.ViewModel
         /// <summary>
         /// Keeps revision elements.
         /// </summary>
-        public ObservableCollection<RevisionModel> Revisions { get; } = new ObservableCollection<RevisionModel>();
+        public ObservableCollection<ArrRevisionEntry> Revisions { get; } = new ObservableCollection<ArrRevisionEntry>();
         /// <summary>
         /// Chosen XML file path by the user.
         /// </summary>
